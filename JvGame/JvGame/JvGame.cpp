@@ -124,7 +124,7 @@ bool JvGame::update()
 	uint32_t delta = 0;
 	uint32_t tick_time = SDL_GetTicks();
 	delta = tick_time - last_tick_time;
-	JvG::elapsed = delta;
+	JvG::elapsed = delta/1000;
 	last_tick_time = tick_time;
 
 	//Frame timing

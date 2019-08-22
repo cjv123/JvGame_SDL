@@ -22,8 +22,16 @@ int main(int argc, char* argv[])
 		bool quit = false;
 		SDL_Event e;
 
+		const unsigned int FPS = 1000 / 60;
+		unsigned int _FPS_Timer=0;
+
 		while (!quit)
 		{
+			if (SDL_GetTicks() - _FPS_Timer < FPS) {
+				SDL_Delay(FPS - SDL_GetTicks() + _FPS_Timer);
+			}
+			_FPS_Timer = SDL_GetTicks();
+
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
