@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\JvGame">
+      <UniqueIdentifier>{fa80603f-8ca4-4733-889f-f1494c98a26a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="JvGame\JvAnim.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvButton.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvCamera.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvEmitter.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvG.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvGame.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvGroup.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvJoystick.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvList.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvObject.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvPoint.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvQuadTree.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvRect.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvSave.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvSprite.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvState.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvText.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvTextPad.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvTilemap.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JvGame\JvU.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestState.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="JvGame\JvAnim.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvButton.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvCamera.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvEmitter.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvG.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvGame.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvGroup.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvH.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvJoystick.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvList.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvObject.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvPoint.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvQuadTree.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvRect.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvSave.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvSprite.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvState.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvText.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvTextPad.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvTilemap.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvU.h">
+      <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="TestState.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
