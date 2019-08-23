@@ -75,6 +75,11 @@ int JvText::getLineHeight()
 void JvText::make()
 {
 	TTF_Font* Sans = TTF_OpenFont(_fontname.c_str(), _size); 
+	if (Sans == NULL) {
+		printf("load fontfile:%s fail:%s\n",_fontname.c_str(), TTF_GetError());
+		return;
+	}
+
 	SDL_Color White = { 255, 255, 255 }; 
 	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans,_text.c_str(), White); 
 	_texture = SDL_CreateTextureFromSurface(JvG::jvGameP->getSDLRenderer(), surfaceMessage); 

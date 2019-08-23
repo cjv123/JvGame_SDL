@@ -84,6 +84,9 @@
     <ClCompile Include="TestState.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="JvGame\JvSound.cpp">
+      <Filter>源文件\JvGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JvGame\JvAnim.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="TestState.h">
       <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="JvGame\JvSound.h">
+      <Filter>源文件\JvGame</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

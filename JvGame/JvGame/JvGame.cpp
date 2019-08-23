@@ -1,30 +1,32 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include <assert.h>
 #include "JvGame.h"
 #include "JvState.h"
 #include "JvSave.h"
-
+#include "JvSound.h"
 
 JvGame::JvGame()
 {
 	JvG::save = new JvSave;
 	JvG::joystick = new JvJoystick;
+	JvG::sound = new JvSound;
 
 	_run=false;
+	_quit = false;
+
 	_delState = NULL;
+	_switchState = NULL;
+	_SDLRenderer = NULL;
+	_SDLWindow = NULL;
 }
 
 
-JvGame::JvGame(unsigned int GameSizeX,unsigned int GameSizeY)
+JvGame::JvGame(unsigned int GameSizeX,unsigned int GameSizeY) : JvGame()
 {
-// 	JvG::save = new JvSave;
-// 	JvG::joystick = new JvJoystick;
-
 	JvG::setGameData(this,GameSizeX,GameSizeY);
-	_run = false;
-	_delState = NULL;
-	_switchState = NULL;
 }
 
 JvGame::~JvGame()
@@ -82,42 +84,87 @@ void JvGame::create()
 	JvU::setWorldBounds(0,0,JvG::width,JvG::height);	
 
 	bool success = true;
-	//Create window
-	_SDLWindow = SDL_CreateWindow("JvGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, JvG::width, JvG::height, SDL_WINDOW_SHOWN);
-	if (_SDLWindow == NULL)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
 	{
-		printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 		success = false;
 	}
 	else
 	{
-		//Create renderer for window
-		_SDLRenderer = SDL_CreateRenderer(_SDLWindow, -1, SDL_RENDERER_ACCELERATED);
-		if (_SDLRenderer == NULL)
+		//Create window
+		_SDLWindow = SDL_CreateWindow("JvGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, JvG::width, JvG::height, SDL_WINDOW_SHOWN);
+		if (_SDLWindow == NULL)
 		{
-			printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
 			success = false;
 		}
 		else
 		{
-			//Initialize renderer color
-			//SDL_SetRenderDrawColor(_SDLRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-
-			//Initialize PNG loading
-			int imgFlags = IMG_INIT_PNG;
-			if (!(IMG_Init(imgFlags) & imgFlags))
+			//Create renderer for window
+			_SDLRenderer = SDL_CreateRenderer(_SDLWindow, -1, SDL_RENDERER_ACCELERATED);
+			if (_SDLRenderer == NULL)
 			{
-				printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
 				success = false;
+			}
+			else
+			{
+				//Initialize renderer color
+				//SDL_SetRenderDrawColor(_SDLRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+				//Initialize PNG loading
+				int imgFlags = IMG_INIT_PNG;
+				if (!(IMG_Init(imgFlags) & imgFlags))
+				{
+					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+					success = false;
+				}
+
+				if (TTF_Init() < 0)
+				{
+					printf("sdl_ttf init fail:%s\n", TTF_GetError());
+					success = false;
+				}
+
+				//Initialize SDL_mixer
+				if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+				{
+					printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+					success = false;
+				}
 			}
 		}
 	}
 
+
 	assert(success);
+
 }
+
+static SDL_Event e;
+static const unsigned int FPS = 1000 / 60;
+static unsigned int _FPS_Timer = 0;
 
 bool JvGame::update()
 {
+
+	if (SDL_GetTicks() - _FPS_Timer < FPS) {
+		SDL_Delay(FPS - SDL_GetTicks() + _FPS_Timer);
+	}
+	_FPS_Timer = SDL_GetTicks();
+
+	//Handle events on queue
+	while (SDL_PollEvent(&e) != 0)
+	{
+		//User requests quit
+		if (e.type == SDL_QUIT)
+		{
+			_quit = true;
+		}
+
+	}
+
+
 	if (!_run) return false;
 
 	uint32_t last_tick_time = 0;
@@ -193,6 +240,11 @@ void JvGame::mouseClick(int type,int x,int y)
 void JvGame::mouseMove(int x,int y)
 {
 	JvG::joystick->mouseMove(x,y);
+}
+
+bool JvGame::quit()
+{
+	return _quit;
 }
 
 SDL_Window* JvGame::getSDLWindow()

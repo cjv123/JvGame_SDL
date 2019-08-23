@@ -3,6 +3,7 @@
 #include "JvState.h"
 #include "JvSave.h"
 #include "JvGame.h"
+#include "JvSound.h"
 
 JvGame* JvG::jvGameP = NULL;
 unsigned int JvG::width;
@@ -16,6 +17,7 @@ JvJoystick* JvG::joystick=NULL;
 JvCamera* JvG::camera = NULL;
 JvSave* JvG::save=NULL;
 bool JvG::pause = false;
+JvSound* JvG::sound = NULL;
 
 void JvG::setGameData(JvGame* JvGameP,unsigned int Width,
 					  unsigned int Height)
@@ -38,13 +40,16 @@ void JvG::switchState(JvState* StateP)
 
 void JvG::playMusic( const char* filename,float Volume/*=1.0f*/ )
 {
+	sound->playMusic(filename);
 }
 
 void JvG::play( const char* filename,float Volume/*=1.0f*/,bool Looped/*=false*/ )
 {
+	sound->playSound(filename);
 }
 
 void JvG::stopMusic()
 {
+	sound->stopMusic();
 }
 

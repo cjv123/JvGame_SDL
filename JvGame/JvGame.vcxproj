@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>E:\workspace\SDL2-2.0.10\include;E:\workspace\SDL2_image-2.0.5\include;E:\workspace\SDL2_ttf-2.0.15\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\workspace\SDL2-2.0.10\lib\x86;E:\workspace\SDL2_image-2.0.5\lib\x86;E:\workspace\SDL2_ttf-2.0.15\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\workspace\SDL2-2.0.10\include;E:\workspace\SDL2_image-2.0.5\include;E:\workspace\SDL2_ttf-2.0.15\include;E:\workspace\SDL2_mixer-2.0.4\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\workspace\SDL2-2.0.10\lib\x86;E:\workspace\SDL2_image-2.0.5\lib\x86;E:\workspace\SDL2_ttf-2.0.15\lib\x86;E:\workspace\SDL2_mixer-2.0.4\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -82,7 +82,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -141,6 +141,7 @@
     <ClCompile Include="JvGame\JvQuadTree.cpp" />
     <ClCompile Include="JvGame\JvRect.cpp" />
     <ClCompile Include="JvGame\JvSave.cpp" />
+    <ClCompile Include="JvGame\JvSound.cpp" />
     <ClCompile Include="JvGame\JvSprite.cpp" />
     <ClCompile Include="JvGame\JvState.cpp" />
     <ClCompile Include="JvGame\JvText.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="JvGame\JvQuadTree.h" />
     <ClInclude Include="JvGame\JvRect.h" />
     <ClInclude Include="JvGame\JvSave.h" />
+    <ClInclude Include="JvGame\JvSound.h" />
     <ClInclude Include="JvGame\JvSprite.h" />
     <ClInclude Include="JvGame\JvState.h" />
     <ClInclude Include="JvGame\JvText.h" />

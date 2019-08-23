@@ -100,7 +100,7 @@ void JvState::pause()
 
 void JvState::loading()
 {
-	//JvText* loadtxt = new JvText(25,JvG::height-50,300,50,"Arial","Loading...");
-	//loadtxt->setSize(20);
-	//add(loadtxt);
+	JvText* loadtxt = new JvText(25,JvG::height-50,300,50,"Arial","Loading...");
+	loadtxt->setSize(20);
+	add(loadtxt);
 }

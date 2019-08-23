@@ -6,6 +6,7 @@ class JvState;
 class JvCamera;
 class JvSave;
 class JvJoystick;
+class JvSound;
 
 
 /**
@@ -66,6 +67,8 @@ public:
 	static JvJoystick* joystick;
 
 	static JvSave* save;
+
+	static JvSound* sound;
 
 	static bool pause;
 };

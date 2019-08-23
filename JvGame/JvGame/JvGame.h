@@ -69,12 +69,14 @@ public:
 	void btnUp(KEYCODE keycode);
 	void mouseClick(int type,int x,int y);
 	void mouseMove(int x,int y);
+	bool quit();
 
 	SDL_Window* getSDLWindow();
 	SDL_Renderer* getSDLRenderer();
 
 protected:
 	bool _run;
+	bool _quit;
 	
 	double _total;
 	double _elapsed;
