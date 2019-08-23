@@ -1,6 +1,8 @@
 #ifndef _JVH_H
 #define _JVH_H
 
+#pragma warning(disable:4996)
+
 #include "JvSprite.h"
 #include "JvPoint.h"
 #include "JvRect.h"

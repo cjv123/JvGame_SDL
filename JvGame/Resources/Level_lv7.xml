@@ -1,0 +1,41 @@
+<level>
+	<objects>
+		<ExitDoor x="267" y="60"/>
+		<Hero x="29" y="235"/>
+		<KeyObj x="487" y="148"/>
+		<StoneHiddenShow x="486" y="183"/>
+		<Stab x="241" y="264"/>
+		<Stab x="255" y="264"/>
+		<Stab x="271" y="264"/>
+		<Stab x="286" y="264"/>
+		<Stab x="301" y="264"/>
+		<Stab x="315" y="264"/>
+		<Stab x="328" y="264"/>
+		<Stab x="342" y="264"/>
+		<Stab x="356" y="264"/>
+		<Stab x="369" y="264"/>
+		<Stab x="382" y="264"/>
+		<Stab x="396" y="264"/>
+		<Stab x="410" y="264"/>
+		<Stab x="426" y="264"/>
+		<Stab x="442" y="264"/>
+		<Stab x="459" y="264"/>
+		<Stab x="474" y="264"/>
+		<Stab x="489" y="264"/>
+		<Stab x="502" y="264"/>
+		<Stab x="515" y="264"/>
+		<Stab x="529" y="264"/>
+		<Stone x="255" y="88"/>
+		<Stone x="271" y="88"/>
+		<Stone x="287" y="88"/>
+		<Stone x="523" y="153"/>
+		<Stone x="467" y="123"/>
+		<Stone x="450" y="123"/>
+		<Stone x="433" y="123"/>
+		<Stone x="387" y="122"/>
+		<Stone x="336" y="121"/>
+		<Stone x="404" y="208"/>
+		<Stone x="445" y="208"/>
+		<Coin x="230" y="88"/>
+	</objects>
+</level>

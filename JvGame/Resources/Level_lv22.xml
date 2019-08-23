@@ -1,0 +1,38 @@
+<level>
+	<objects>
+		<Hero x="35" y="55"/>
+		<KeyObj x="1070" y="609"/>
+		<ExitDoor x="458" y="404"/>
+		<Enemy x="486" y="401"/>
+		<Enemy x="190" y="65"/>
+		<Enemy x="808" y="63"/>
+		<Stab x="1026" y="248"/>
+		<Stab x="1040" y="248"/>
+		<Stab x="1053" y="248"/>
+		<Stab x="899" y="584"/>
+		<Stab x="912" y="584"/>
+		<Stab x="925" y="584"/>
+		<Stab x="938" y="584"/>
+		<Stab x="951" y="584"/>
+		<Stab x="964" y="584"/>
+		<Stab x="977" y="584"/>
+		<Stab x="990" y="584"/>
+		<Stab x="87" y="376"/>
+		<Stab x="74" y="376"/>
+		<Stab x="60" y="376"/>
+		<ClimbItem x="1081" y="221"/>
+		<BallItem x="49" y="606"/>
+		<Enemy x="354" y="750"/>
+		<Enemy x="975" y="744"/>
+		<Stab x="22" y="776"/>
+		<Stab x="35" y="776"/>
+		<Stab x="48" y="776"/>
+		<Stab x="61" y="776"/>
+		<Stab x="74" y="776"/>
+		<Stab x="87" y="776"/>
+		<Stab x="100" y="776"/>
+		<Enemy x="509" y="508"/>
+
+		<Coin x="866" y="658"/>
+	</objects>
+</level>

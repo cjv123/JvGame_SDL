@@ -37,13 +37,15 @@ JvTilemap* JvTilemap::loadMap(const char* dataFilename, const char* imgFilename,
 							  unsigned int TileWidth/* =0 */, unsigned int TileHeight/* =0 */)
 {
 	unsigned long size=0;
-	ifstream file(dataFilename);
-	stringstream buffer;
-	buffer << file.rdbuf();
-	string strTmp(buffer.str());
+	ifstream file(dataFilename,ifstream::in);
+	if (file.is_open())
+	{
+		stringstream buffer;
+		buffer << file.rdbuf();
+		string strTmp(buffer.str());
 
-	loadMap(strTmp, imgFilename,TileWidth,TileHeight);
-
+		loadMap(strTmp, imgFilename, TileWidth, TileHeight);
+	}
 	return this;
 }
 
@@ -91,7 +93,7 @@ JvTilemap* JvTilemap::loadMap(const string& DataStr, const char* imgFilename,
 
 	//printf("widthintiles:%d,heightintiles:%d\n",widthInTiles,heightInTiles);
 	
-	_texture = JvU::loadTexture(DataStr);
+	_texture = JvU::loadTexture(imgFilename);
 
 	if (_texture == NULL)
 	{
@@ -197,10 +199,10 @@ void JvTilemap::renderTile()
  			rx +=x;
  			ry +=y;
 
- 			JvG::camera->draw(_texture, (float)rx, (float)ry,
- 				(float)(_tileWidth/(int)scale),(float)(_tileHeight/(int)scale),
- 				(row*_tileWidth)-(float)offsetX,(col*_tileHeight)-(float)offsetY,
- 				(float)_tileWidth,(float)_tileHeight,0, NGE_FLIP_NONE);
+			JvG::camera->draw(_texture, (float)rx, (float)ry,
+				(float)(_tileWidth / (int)scale), (float)(_tileHeight / (int)scale),
+				(row * _tileWidth) - (float)offsetX, (col * _tileHeight) - (float)offsetY,
+				(float)scale, (float)scale, 0, NGE_FLIP_NONE);
 
 		
 			row++;

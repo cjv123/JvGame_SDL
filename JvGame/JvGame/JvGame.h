@@ -18,7 +18,7 @@ public:
 	 *@param unsigned int GameSizeY,ÆÁÄ»¸ß¶È
 	 *@return void
 	 */
-	JvGame(unsigned int GameSizeX,unsigned int GameSizeY);
+	JvGame(unsigned int GameSizeX,unsigned int GameSizeY,float gameScale=1);
 
 	JvGame();
 
@@ -70,6 +70,7 @@ public:
 	void mouseClick(int type,int x,int y);
 	void mouseMove(int x,int y);
 	bool quit();
+	float getGameScale();
 
 	SDL_Window* getSDLWindow();
 	SDL_Renderer* getSDLRenderer();
@@ -77,9 +78,12 @@ public:
 protected:
 	bool _run;
 	bool _quit;
+
+	float _gameScale;
 	
 	double _total;
 	double _elapsed;
+	
 
 	JvState* _delState;
 	JvState* _switchState;

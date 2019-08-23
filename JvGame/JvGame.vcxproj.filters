@@ -16,6 +16,9 @@
     <Filter Include="源文件\JvGame">
       <UniqueIdentifier>{fa80603f-8ca4-4733-889f-f1494c98a26a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\SuperCatrio">
+      <UniqueIdentifier>{f7a5ee9c-4bc1-4e33-88aa-d36946f66b07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JvGame\JvAnim.cpp">
@@ -81,11 +84,98 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TestState.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="JvGame\JvSound.cpp">
       <Filter>源文件\JvGame</Filter>
+    </ClCompile>
+    <ClCompile Include="BallItem.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="ClimbItem.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateState.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitDoor.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="Fan.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyObj.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePad.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="HomeState.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyObj.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoState.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="PassState.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="QueObj.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectState.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="Stab.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="StabD.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="StabHidden.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="StabL.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="StabR.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="StartState.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="Stone.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="StoneHidden.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="StoneHiddenShow.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="StoneMove.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="StoneMoveD.cpp">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestState.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,11 +242,95 @@
     <ClInclude Include="JvGame\JvU.h">
       <Filter>源文件\JvGame</Filter>
     </ClInclude>
-    <ClInclude Include="TestState.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="JvGame\JvSound.h">
       <Filter>源文件\JvGame</Filter>
+    </ClInclude>
+    <ClInclude Include="BallItem.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="ClimbItem.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateState.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitDoor.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="Fan.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyObj.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePad.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeState.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="keyObj.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="LogoState.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="PassState.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="QueObj.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectState.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="Stab.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StabD.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StabHidden.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StabL.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StabR.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StartState.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="Stone.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneHidden.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneHiddenShow.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneL.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneMove.h">
+      <Filter>源文件\SuperCatrio</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneMoveD.h">
+      <Filter>源文件\SuperCatrio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

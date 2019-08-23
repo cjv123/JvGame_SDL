@@ -1,0 +1,22 @@
+<level>
+	<objects>
+		<KeyObj x="39" y="35"/>
+		<Fan x="173" y="526"/>
+		<Fan x="265" y="492"/>
+		<Fan x="364" y="463"/>
+		<Fan x="467" y="476"/>
+		<Fan x="572" y="498"/>
+		<BallItem x="1866" y="36"/>
+		<ExitDoor x="1267" y="244"/>
+		<Hero x="67" y="501"/>
+		<StabD x="374" y="288"/>
+		<Stab x="468" y="56"/>
+		<Stab x="455" y="56"/>
+		<FlyObj x="685" y="439"/>
+		<FlyObj x="511" y="207"/>
+		<StabD x="475" y="288"/>
+		<StabD x="277" y="288"/>
+		<Stone x="658" y="455"/>
+		<Coin x="84" y="101"/>
+	</objects>
+</level>

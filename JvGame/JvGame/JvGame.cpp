@@ -21,11 +21,13 @@ JvGame::JvGame()
 	_switchState = NULL;
 	_SDLRenderer = NULL;
 	_SDLWindow = NULL;
+	_gameScale = 1;
 }
 
 
-JvGame::JvGame(unsigned int GameSizeX,unsigned int GameSizeY) : JvGame()
+JvGame::JvGame(unsigned int GameSizeX, unsigned int GameSizeY, float gameScale) :JvGame()
 {
+	_gameScale = gameScale;
 	JvG::setGameData(this,GameSizeX,GameSizeY);
 }
 
@@ -92,7 +94,8 @@ void JvGame::create()
 	else
 	{
 		//Create window
-		_SDLWindow = SDL_CreateWindow("JvGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, JvG::width, JvG::height, SDL_WINDOW_SHOWN);
+		_SDLWindow = SDL_CreateWindow("JvGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+			JvG::width*_gameScale, JvG::height*_gameScale, SDL_WINDOW_SHOWN);
 		if (_SDLWindow == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -111,6 +114,10 @@ void JvGame::create()
 			{
 				//Initialize renderer color
 				//SDL_SetRenderDrawColor(_SDLRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_Rect rendererRect{0,0,JvG::width*_gameScale,JvG::height*_gameScale};
+				SDL_RenderSetViewport(_SDLRenderer,&rendererRect);
+				SDL_RenderSetLogicalSize(_SDLRenderer, JvG::width,JvG::height);
+				SDL_RenderSetScale(_SDLRenderer,_gameScale,_gameScale);
 
 				//Initialize PNG loading
 				int imgFlags = IMG_INIT_PNG;
@@ -245,6 +252,11 @@ void JvGame::mouseMove(int x,int y)
 bool JvGame::quit()
 {
 	return _quit;
+}
+
+float JvGame::getGameScale()
+{
+	return _gameScale;
 }
 
 SDL_Window* JvGame::getSDLWindow()

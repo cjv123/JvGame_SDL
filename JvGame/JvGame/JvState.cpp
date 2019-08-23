@@ -56,13 +56,16 @@ void JvState::render()
 		if (renderer) 
 		{
 			//Clear screen
-			//SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-			SDL_RenderClear(renderer);
 
 			if (_bgColor != 0)
 			{
-				//m_ccbglayer->visit();
+				int r, g, b,a;
+				GET_RGBA_8888(_bgColor,r,g,b,a);
+				SDL_SetRenderDrawColor(renderer, r, g, b, a);
 			}
+
+			SDL_RenderClear(renderer);
+
 			defaultGroup->render();
 			camera->renderFlash();
 

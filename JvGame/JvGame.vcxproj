@@ -127,6 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BallItem.cpp" />
+    <ClCompile Include="ClimbItem.cpp" />
+    <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="CreateState.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="ExitDoor.cpp" />
+    <ClCompile Include="Fan.cpp" />
+    <ClCompile Include="FlyObj.cpp" />
+    <ClCompile Include="GamePad.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Hero.cpp" />
+    <ClCompile Include="HomeState.cpp" />
     <ClCompile Include="JvGame\JvAnim.cpp" />
     <ClCompile Include="JvGame\JvButton.cpp" />
     <ClCompile Include="JvGame\JvCamera.cpp" />
@@ -148,10 +160,39 @@
     <ClCompile Include="JvGame\JvTextPad.cpp" />
     <ClCompile Include="JvGame\JvTilemap.cpp" />
     <ClCompile Include="JvGame\JvU.cpp" />
+    <ClCompile Include="KeyObj.cpp" />
+    <ClCompile Include="LogoState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PassState.cpp" />
+    <ClCompile Include="QueObj.cpp" />
+    <ClCompile Include="SelectState.cpp" />
+    <ClCompile Include="Stab.cpp" />
+    <ClCompile Include="StabD.cpp" />
+    <ClCompile Include="StabHidden.cpp" />
+    <ClCompile Include="StabL.cpp" />
+    <ClCompile Include="StabR.cpp" />
+    <ClCompile Include="StartState.cpp" />
+    <ClCompile Include="Stone.cpp" />
+    <ClCompile Include="StoneHidden.cpp" />
+    <ClCompile Include="StoneHiddenShow.cpp" />
+    <ClCompile Include="StoneMove.cpp" />
+    <ClCompile Include="StoneMoveD.cpp" />
     <ClCompile Include="TestState.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BallItem.h" />
+    <ClInclude Include="ClimbItem.h" />
+    <ClInclude Include="Coin.h" />
+    <ClInclude Include="CreateState.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="ExitDoor.h" />
+    <ClInclude Include="Fan.h" />
+    <ClInclude Include="FlyObj.h" />
+    <ClInclude Include="GamePad.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="Hero.h" />
+    <ClInclude Include="HomeState.h" />
     <ClInclude Include="JvGame\JvAnim.h" />
     <ClInclude Include="JvGame\JvButton.h" />
     <ClInclude Include="JvGame\JvCamera.h" />
@@ -174,7 +215,23 @@
     <ClInclude Include="JvGame\JvTextPad.h" />
     <ClInclude Include="JvGame\JvTilemap.h" />
     <ClInclude Include="JvGame\JvU.h" />
-    <ClInclude Include="TestState.h" />
+    <ClInclude Include="keyObj.h" />
+    <ClInclude Include="LogoState.h" />
+    <ClInclude Include="PassState.h" />
+    <ClInclude Include="QueObj.h" />
+    <ClInclude Include="SelectState.h" />
+    <ClInclude Include="Stab.h" />
+    <ClInclude Include="StabD.h" />
+    <ClInclude Include="StabHidden.h" />
+    <ClInclude Include="StabL.h" />
+    <ClInclude Include="StabR.h" />
+    <ClInclude Include="StartState.h" />
+    <ClInclude Include="Stone.h" />
+    <ClInclude Include="StoneHidden.h" />
+    <ClInclude Include="StoneHiddenShow.h" />
+    <ClInclude Include="StoneL.h" />
+    <ClInclude Include="StoneMove.h" />
+    <ClInclude Include="StoneMoveD.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,17 @@
+<level>
+	<objects>
+		<ExitDoor x="897" y="292"/>
+		<Hero x="90" y="350"/>
+		<KeyObj x="529" y="78"/>
+		<Enemy x="718" y="408.5"/>
+		<Enemy x="526" y="116"/>
+		<Enemy x="95" y="180.5"/>
+		<Stone x="310" y="209"/>
+		<Stone x="361" y="209"/>
+		<Stone x="310" y="225"/>
+		<Stone x="310" y="241"/>
+		<Stone x="377" y="209"/>
+		<ClimbItem x="45" y="390"/>
+		<Coin x="35" y="50"/>
+	</objects>
+</level>

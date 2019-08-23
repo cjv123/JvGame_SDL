@@ -1,0 +1,34 @@
+<level>
+	<objects>
+		<ExitDoor x="1529" y="68"/>
+		<Hero x="90" y="350"/>
+		<KeyObj x="921" y="75"/>
+		<Enemy x="946" y="277"/>
+		<Enemy x="1503" y="71.5"/>
+		<Stab x="276" y="425" n="10"/>
+		<Stab x="553" y="217" n="15"/>
+		<Stone x="1296" y="144"/>
+		<Stone x="83" y="312"/>
+		<Stone x="99" y="312"/>
+		<Stone x="115" y="312"/>
+		<Stone x="131" y="312"/>
+		<Stone x="147" y="312"/>
+		<Stone x="163" y="312"/>
+		<Stone x="448" y="192"/>
+		<Stone x="448" y="208"/>
+		<Stone x="448" y="224"/>
+		<Stone x="448" y="240"/>
+		<Stone x="448" y="256"/>
+		<Stone x="448" y="272"/>
+		<Stone x="448" y="288"/>
+		<Stone x="448" y="304"/>
+		<Stone x="448" y="320"/>
+		<Stone x="448" y="336"/>
+		<Stone x="448" y="352"/>
+		<Stone x="464" y="352"/>
+		<Stone x="480" y="352"/>
+		<ClimbItem x="45" y="390"/>
+		<BallItem x="70" y="90"/>
+		<Coin x="498" y="45"/>
+	</objects>
+</level>

@@ -3,15 +3,15 @@
 #include <map>
 #include "JvGame/JvGame.h"
 #include "JvGame/JvState.h"
+#include "LogoState.h"
+#include "GameState.h"
 #include "TestState.h"
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
 
 int main(int argc, char* argv[])
 {
-	JvGame jvgame(SCREEN_WIDTH, SCREEN_HEIGHT);
-	jvgame.setInitState(new TestState);
+	JvGame jvgame(320, 240,2);
+	jvgame.setInitState(new GameState);
 	jvgame.run();
 
 	while (!jvgame.quit())

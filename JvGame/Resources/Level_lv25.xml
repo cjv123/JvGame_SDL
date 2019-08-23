@@ -1,0 +1,28 @@
+<level>
+	<objects>
+		<Fan x="160" y="768"/>
+		<StabD x="148" y="528"/>
+		<StabD x="161" y="528"/>
+		<StabD x="175" y="528"/>
+		<Stab x="422" y="568"/>
+		<Stab x="436" y="568"/>
+		<Stab x="450" y="568"/>
+		<ExitDoor x="315" y="372"/>
+		<BallItem x="1099" y="67"/>
+		<Enemy x="1410" y="365"/>
+		<FlyObj x="1271" y="690"/>
+		<FlyObj x="222" y="549"/>
+		<Hero x="70" y="730"/>
+		<Enemy x="204" y="463"/>
+		<StoneHiddenShow x="791" y="92"/>
+		<StoneHiddenShow x="792" y="160"/>
+		<StoneHiddenShow x="791" y="182"/>
+		<StoneHiddenShow x="792" y="280"/>
+		<StoneHiddenShow x="793" y="306"/>
+		<StoneHiddenShow x="796" y="433"/>
+		<StoneHiddenShow x="796" y="462"/>
+		<StoneHiddenShow x="797" y="582"/>
+		<KeyObj x="1396" y="364"/>
+		<Coin x="1235" y="210"/>
+	</objects>
+</level>
