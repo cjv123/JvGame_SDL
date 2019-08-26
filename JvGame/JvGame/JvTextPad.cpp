@@ -58,6 +58,7 @@ void JvTextPad::render()
 	//FillRect(_x,_y,_w,_h,_bgColor,DISPLAY_PIXEL_FORMAT_4444);
 	int r, g, b, a;
 	GET_RGBA_8888(_bgColor, r, g, b, a);
+	SDL_SetRenderDrawBlendMode(JvG::jvGameP->getSDLRenderer(), SDL_BLENDMODE_BLEND);
 	SDL_SetRenderDrawColor(JvG::jvGameP->getSDLRenderer(), r, g, b, a);
 	SDL_Rect rect{_x,_y,_w,_h};
 	SDL_RenderFillRect(JvG::jvGameP->getSDLRenderer(),&rect);
@@ -106,6 +107,7 @@ void JvTextPad::setLineHight(int LineHight)
 void JvTextPad::setTextSize(int Size)
 {
 	_text->setSize(Size);
+	_text->make();
 }
 
 void JvTextPad::setTextPostion(int TargetX,int TargetY)

@@ -103,6 +103,7 @@ void JvGame::create()
 		}
 		else
 		{
+			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 			//Create renderer for window
 			_SDLRenderer = SDL_CreateRenderer(_SDLWindow, -1, SDL_RENDERER_ACCELERATED);
 			if (_SDLRenderer == NULL)
@@ -152,6 +153,8 @@ static SDL_Event e;
 static const unsigned int FPS = 1000 / 60;
 static unsigned int _FPS_Timer = 0;
 
+static uint32_t last_tick_time = 0;
+
 bool JvGame::update()
 {
 
@@ -169,23 +172,26 @@ bool JvGame::update()
 			_quit = true;
 		}
 
+		if (JvG::joystick)
+		{
+			JvG::joystick->updateSDLInput(e);
+		}
 	}
 
 
 	if (!_run) return false;
 
-	uint32_t last_tick_time = 0;
 	uint32_t delta = 0;
 	uint32_t tick_time = SDL_GetTicks();
 	delta = tick_time - last_tick_time;
-	JvG::elapsed = delta/1000;
-	last_tick_time = tick_time;
-
+	JvG::elapsed = delta/1000.0f;
 	//Frame timing
 	if(JvG::elapsed > JvG::maxElapsed)
 	{
 		JvG::elapsed = JvG::maxElapsed;
 	}
+	last_tick_time = tick_time;
+
 	
 //	JvG::elapsed = 1.0f/JvG::frameRate;
 
@@ -206,7 +212,7 @@ bool JvGame::update()
 		JvG::stateP->defaultGroup->dead = false;
 		JvG::stateP->create();
 		_switchState = NULL;
-		//JvG::joystick->reSet();
+		JvG::joystick->reSet();
 	}
 
 	if (JvG::stateP != NULL)
@@ -214,7 +220,7 @@ bool JvGame::update()
 		JvG::stateP->update();
 		JvG::stateP->render();
 	}
-	//JvG::joystick->update();
+	JvG::joystick->update();
 
 	return true;
 }

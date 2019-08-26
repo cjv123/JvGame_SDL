@@ -1,6 +1,6 @@
 #include "JvJoystick.h"
 
-JvJoystick::JvJoystick()
+JvJoystick::JvJoystick() : _mouseEnable(false)
 {
 	_keyMap.insert(KeyMapType::value_type(UPCODE,NOPRESS));
 	_keyMap.insert(KeyMapType::value_type(DOWNCODE,NOPRESS));
@@ -42,6 +42,18 @@ void JvJoystick::pressUp(KEYCODE keycode)
 	if(_keyMap.find(keycode)==_keyMap.end())
 		return;
 	_keyMap[keycode] = NOPRESS;
+}
+
+void JvJoystick::pressDownOrUp(KEYCODE keycode, bool down)
+{
+	if (down)
+	{
+		pressDown(keycode);
+	}
+	else
+	{
+		pressUp(keycode);
+	}
 }
 
 bool JvJoystick::isPress(KEYCODE keycode)
@@ -150,6 +162,58 @@ void JvJoystick::update()
 
 	}
 
+}
+
+void JvJoystick::updateSDLInput(SDL_Event& e)
+{
+	//reSet();
+	if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
+	{
+		bool down = (e.type == SDL_KEYDOWN);
+		//Select surfaces based on key press
+		switch (e.key.keysym.sym)
+		{
+		case SDLK_UP:
+			pressDownOrUp(UPCODE,down);
+			break;
+
+		case SDLK_DOWN:
+			pressDownOrUp(DOWNCODE,down);
+			break;
+
+		case SDLK_LEFT:
+			pressDownOrUp(LEFTCODE,down);
+			break;
+
+		case SDLK_RIGHT:
+			pressDownOrUp(RIGHTCODE,down);
+			break;
+		
+		case SDLK_k:
+			pressDownOrUp(ACODE,down);
+			break;
+		case SDLK_j:
+			pressDownOrUp(BCODE,down);
+			break;
+		case SDLK_i:
+			pressDownOrUp(XCODE,down);
+			break;
+		case SDLK_u:
+			pressDownOrUp(YCODE,down);
+			break;
+		case SDLK_ESCAPE:
+			exit(0);
+			break;
+
+		default:
+			break;
+		}
+	}
+}
+
+bool JvJoystick::isMouseEnable()
+{
+	return _mouseEnable;
 }
 
 MousePoint* JvJoystick::getMousePoint()

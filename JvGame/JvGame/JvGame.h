@@ -63,7 +63,7 @@ public:
 	 *@return bool,停止运行时发挥false，否则true
 	 */
 	bool update();
-	
+
 	void create();
 	void btnDown(KEYCODE keycode);
 	void btnUp(KEYCODE keycode);

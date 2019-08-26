@@ -265,14 +265,19 @@ void JvCamera::renderFlash()
 	}
 
 	_flashAlpha -= (int)((double)(JvG::elapsed/_flashDelay)*(double)255);
-	int r,b,g,a;
-	GET_RGBA_8888(_flashColor,r,g,b,a);
 	if(_flashAlpha <= 0)
 	{
 		_flashAlpha = 0;
 		_flashDelay = 0;
 		return;
 	}
+
+	int r,b,g,a;
+	GET_RGBA_8888(_flashColor,r,g,b,a);
+	SDL_SetRenderDrawBlendMode(JvG::jvGameP->getSDLRenderer(), SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(JvG::jvGameP->getSDLRenderer(), r, g, b,_flashAlpha);
+	SDL_Rect rect{ 0,0,JvG::width,JvG::height };
+	SDL_RenderFillRect(JvG::jvGameP->getSDLRenderer(), &rect);
 }
 
 void JvCamera::draw(SDL_Texture* texture,float sx ,float sy ,float sw ,float sh ,float dx ,float dy ,

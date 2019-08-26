@@ -5,13 +5,14 @@
 #include "JvGame/JvState.h"
 #include "LogoState.h"
 #include "GameState.h"
+#include "HomeState.h"
 #include "TestState.h"
 
 
 int main(int argc, char* argv[])
 {
-	JvGame jvgame(320, 240,2);
-	jvgame.setInitState(new GameState);
+	JvGame jvgame(320, 240,1);
+	jvgame.setInitState(new LogoState);
 	jvgame.run();
 
 	while (!jvgame.quit())

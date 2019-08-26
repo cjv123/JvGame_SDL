@@ -18,6 +18,14 @@ static void back_button_callback(int par)
 SelectState::SelectState(bool isMusic)
 {
 	_isMusic = isMusic;
+	_curSelectLv = 1;
+	_curMaxLv = 1;
+	_curSelectButton = NULL;
+
+	for (int i = 0; i < 28; i++)
+	{
+		_selectButtons[i] = NULL;
+	}
 }
 
 void SelectState::create()
@@ -27,9 +35,9 @@ void SelectState::create()
 	camera->flash(MAKE_RGBA_8888(255,255,255,255),1);
 
 	_bgTileGroup = new JvGroup;
-	_bgTileW=25;
-	_bgTileWNum = JvU::ceil(JvG::width/_bgTileW)+3;
-	_bgTileHNum = JvU::ceil(JvG::height/_bgTileW)+3;
+	_bgTileW=35;
+	_bgTileWNum = JvU::ceil(JvG::width/_bgTileW)+5;
+	_bgTileHNum = JvU::ceil(JvG::height/_bgTileW)+5;
 	_bgTileNum = _bgTileHNum*_bgTileWNum;
 	
 	int i=0,w=0,h=0,color=0,row=0,col=0;
@@ -78,7 +86,7 @@ void SelectState::create()
 	JvSprite* title  = new JvSprite;
 	title->loadGraphic("sel_title_en.png");
 	title->x = JvG::width/2 - title->width/2;
-	title->y = 0;
+	title->y = 17;
 	add(title);
 	
 	JvButton* lvButton=NULL;
@@ -110,7 +118,8 @@ void SelectState::create()
 			lvButton = new JvButton(0,0,bImgSp->width,bHighImgSp->height);
 			int tarx = JvG::width/2-7*((int)lvButton->width+interval)/2;
 			lvButton->x = col * (lvButton->width+interval)+tarx;
-			lvButton->y = row * (lvButton->height+interval)+JvG::height/5;
+			lvButton->y = row * (lvButton->height+interval)+JvG::height/5+20;
+
 			lvButton->loadGraphic(bImgSp,bHighImgSp);
 			add(lvButton);
 			lvButton->setCallback(selectLvButton,NULL,i+1);
@@ -119,15 +128,17 @@ void SelectState::create()
 			{
 				sprintf(str,"%d",i+1);
 				txt = new JvText(lvButton->x,lvButton->y,lvButton->width,
-					lvButton->height,FONT_NAME,str);
-				txt->setSize(16);
+					lvButton->height,FONT_NAME,str,16);
+				txt->x = lvButton->x + lvButton->width/2 - txt->width / 2;
+				txt->y = lvButton->y + lvButton->height/2 - txt->height / 2+2;
 				add(txt);
 			}
 			else
 			{
 				txt = new JvText(lvButton->x,lvButton->y,lvButton->width,
 					lvButton->height,FONT_NAME,"Pass");
-				txt->setSize(8);
+				txt->x = lvButton->x + lvButton->width/2 - txt->width / 2;
+				txt->y = lvButton->y + lvButton->height/2 - txt->height / 2;
 				//txt->setColor(MAKE_RGBA_8888(255,0,0,255));
 				add(txt);
 
@@ -142,18 +153,28 @@ void SelectState::create()
 					add(star);
 				}
 			}
-			
+
+			_curMaxLv = i + 1;
 		}
 		else if(GameState::gameData->level[i]==LVLOCK)
 		{
 			bImgSp = new JvSprite(0,0,bLockImg);
 			bImgSp->x = col * (lvButton->width+interval)+JvG::width/2-7*((int)lvButton->width+interval)/2;
-			bImgSp->y = row * (lvButton->height+interval)+JvG::height/5;
+			bImgSp->y = row * (lvButton->height+interval)+JvG::height/5+20;
 			add(bImgSp);
+		}
+
+		if (lvButton)
+		{
+			_selectButtons[i] = lvButton;
 		}
 	}
 
-	JvSprite* backBSp = new JvSprite;
+	
+	_curSelectButton = _selectButtons[_curSelectLv - 1];
+	updateSelectButton();
+
+	/*JvSprite* backBSp = new JvSprite;
 	JvSprite* backBSpH = new JvSprite;
 	backBSp->loadGraphic("back.png");
 	backBSpH->loadGraphic("back_sel.png");
@@ -161,7 +182,7 @@ void SelectState::create()
 		backBSp->width,backBSp->height);
 	backButton->loadGraphic(backBSp,backBSpH);
 	backButton->setCallback(back_button_callback);
-	add(backButton);
+	add(backButton);*/
 	
 	
 	if (_isMusic)
@@ -196,7 +217,63 @@ void SelectState::update()
 			}
 		}
 	}
+
+	if (JvG::joystick->isJustPreess(BCODE))
+	{
+		JvG::switchState(new HomeState);
+	}
+	else if (JvG::joystick->isJustPreess(ACODE))
+	{
+		GameState::nowLv = _curSelectLv;
+		JvG::switchState(new GameState);
+	}
+	else if (JvG::joystick->isJustPreess(UPCODE))
+	{
+		if (_curSelectLv - 7 > 0)
+		{
+			_curSelectLv-=7;
+			updateSelectButton();
+		}
+	}
+	else if (JvG::joystick->isJustPreess(DOWNCODE))
+	{
+		if (_curSelectLv + 7 <= _curMaxLv)
+		{
+			_curSelectLv+=7;
+			updateSelectButton();
+		}
+	}
+	else if (JvG::joystick->isJustPreess(LEFTCODE))
+	{
+		_curSelectLv--;
+		if (_curSelectLv < 1)
+			_curSelectLv = _curMaxLv;
+		updateSelectButton();
+	}
+	else if (JvG::joystick->isJustPreess(RIGHTCODE))
+	{
+		_curSelectLv++;
+		if (_curSelectLv > _curMaxLv)
+			_curSelectLv = 1;
+
+		updateSelectButton();
+	}
+
 	
 
 	JvState::update();
+}
+
+void SelectState::updateSelectButton()
+{
+	if (_curSelectButton)
+	{
+		_curSelectButton->normalMode();
+		if (_selectButtons[_curSelectLv - 1])
+		{
+			_selectButtons[_curSelectLv - 1]->selectMode();
+			_curSelectButton = _selectButtons[_curSelectLv - 1];
+		}
+
+	}
 }

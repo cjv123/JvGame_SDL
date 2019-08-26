@@ -10,23 +10,22 @@ JvText::JvText(double X,double Y, double Width,double Height,const char* fontnam
 	y = Y;
 	width = Width;
 	height = Height;
+	frameWidth = width;
+	frameHeight = height;
+	scrollFactor.x = scrollFactor.y = 0;
 	_text = Text;
 	_size = size;
 	_lineHeight = 1;
 	setCollide(false);
 	_fontname = fontname; 
-	_texture = NULL;
+	_texure = NULL;
+	_color = MAKE_RGBA_8888(255,255,255,255);
 
 	make();
 }
 
 JvText::~JvText()
 {
-	if (_texture != NULL)
-	{
-		SDL_DestroyTexture(_texture);
-		_texture = NULL;
-	}
 }
 
 void JvText::setText(string& Text)
@@ -80,22 +79,41 @@ void JvText::make()
 		return;
 	}
 
-	SDL_Color White = { 255, 255, 255 }; 
-	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans,_text.c_str(), White); 
-	_texture = SDL_CreateTextureFromSurface(JvG::jvGameP->getSDLRenderer(), surfaceMessage); 
+	int r, g, b,a;
+	GET_RGBA_8888(_color,r,g,b,a);
+	SDL_Color White = { r, g, b }; 
+	SDL_Surface* surfaceMessage = NULL;
+	if (width == 0)
+	{
+		surfaceMessage = TTF_RenderText_Solid(Sans,_text.c_str(), White);
+	}
+	else
+	{
+		surfaceMessage = TTF_RenderText_Blended_Wrapped(Sans,_text.c_str(), White,width);
+	}
+
+	if (_texure)
+	{
+		SDL_DestroyTexture(_texure);
+		_texure = NULL;
+	}
+	_texure = SDL_CreateTextureFromSurface(JvG::jvGameP->getSDLRenderer(), surfaceMessage); 
 	SDL_FreeSurface(surfaceMessage);
 	TTF_CloseFont(Sans);
 
 	int textureW = 0, textureH = 0;
-	SDL_QueryTexture(_texture, NULL, NULL, &textureW, &textureH);
+	SDL_QueryTexture(_texure, NULL, NULL, &textureW, &textureH);
 	width = textureW;
 	height = textureH;
+	frameWidth = width;
+	frameHeight = height;
 }
 
 void JvText::render()
 {
-	if (_texture) 
+	if (_texure) 
 	{
-		JvG::camera->draw(_texture,0,0,width,height,x,y,1,1,0,NGE_FLIP_NONE);
+		//JvG::camera->draw(_texure,0,0,width,height,x,y,1,1,0,NGE_FLIP_NONE);
+		JvG::camera->render(this);
 	}
 }

@@ -65,36 +65,39 @@ void JvButton::update()
 
 	JvGroup::update();
 	
-	JvRect rect(x,y,width,height);
-	if (JvG::joystick->isMouseIn(rect))
-	{
-		if(_onP!=NULL)
-			_onP->visible = true;
-		if(_onP!=NULL)
-			_offP->visible = false;
-		
-		if ( _isPress == false)
+	if (JvG::joystick->isMouseEnable()) {
+		JvRect rect(x, y, width, height);
+		if (JvG::joystick->isMouseIn(rect))
 		{
-			_isPress = true;
-			if (_downCallBackFun)
+			if (_onP != NULL)
+				_onP->visible = true;
+			if (_onP != NULL)
+				_offP->visible = false;
+
+			if (_isPress == false)
 			{
-				_downCallBackFun(_parDown);
+				_isPress = true;
+				if (_downCallBackFun)
+				{
+					_downCallBackFun(_parDown);
+				}
 			}
 		}
-	}
-	else
-	{
-		if (_callBackFun != NULL && _isPress == true)
+		else
 		{
-			_callBackFun(_parCallBack);
-			_isPress = false;
+			if (_callBackFun != NULL && _isPress == true)
+			{
+				_callBackFun(_parCallBack);
+				_isPress = false;
+			}
+
+			if (_onP != NULL)
+				_onP->visible = false;
+
+			if (_onP != NULL)
+				_offP->visible = true;
 		}
 
-		if(_onP!=NULL) 
-			_onP->visible = false;
-
-		if(_onP!=NULL) 
-			_offP->visible = true;
 	}
 }
 
@@ -123,4 +126,20 @@ void JvButton::setPosition(int X,int Y)
 	}
 	x = X;
 	y = Y;
+}
+
+void JvButton::selectMode()
+{
+	if (_onP != NULL)
+		_onP->visible = true;
+	if (_onP != NULL)
+		_offP->visible = false;
+}
+
+void JvButton::normalMode()
+{
+	if (_onP != NULL)
+		_onP->visible = false;
+	if (_onP != NULL)
+		_offP->visible = true;
 }

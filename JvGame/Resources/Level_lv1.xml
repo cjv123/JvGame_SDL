@@ -19,10 +19,8 @@ does not affect the pass."/>
 		<QueObj x="124" y="370"
 		text="Welcome!
 This game is very easy.
-First,you find the key in the stage,
+You find the key in the stage,
 and then open the door with this key.
-Take the ball!.You can change to a ball with.
-Through the narrow terrain.Also can break bricks.
 Good Luck!
 " item="BallItem"/>
 	</objects>

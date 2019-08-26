@@ -1,6 +1,7 @@
 #include <SDL_image.h>
 #include "JvSprite.h"
 #include "JvState.h"
+#include "JvGame.h"
 
 JvSprite::JvSprite(double X /* =0 */,double Y/* =0 */,
 	SDL_Texture* SimpleGraphic /* = NULL */) : JvObject(X,Y)
@@ -125,7 +126,12 @@ void JvSprite::render()
 
 	if (_isFillRect)
 	{
-		//Î´ÊµÏÖ
+		int r, g, b, a;
+		GET_RGBA_8888(_rectColor, r, g, b, a);
+		SDL_SetRenderDrawBlendMode(JvG::jvGameP->getSDLRenderer(), SDL_BLENDMODE_BLEND);
+		SDL_SetRenderDrawColor(JvG::jvGameP->getSDLRenderer(), r, g, b, a);
+		SDL_Rect rect{ x,y,width,height };
+		SDL_RenderFillRect(JvG::jvGameP->getSDLRenderer(), &rect);
 	}
 }
 

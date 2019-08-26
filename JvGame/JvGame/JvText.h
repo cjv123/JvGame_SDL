@@ -4,13 +4,14 @@
 #include <SDL.h>
 #include "JvState.h"
 #include <string>
+#include "JvSprite.h"
 using namespace std;
 
 /**
 *文本
 *实现文本显示,支持\n换行
 */
-class JvText : public JvObject
+class JvText : public JvSprite
 {
 public:
 	JvText(double X, double Y, double Width,double Height,const char* fontname,
@@ -29,7 +30,6 @@ public:
 	virtual void render();
 
 protected:
-	SDL_Texture* _texture;
 
 	string _text;
 	int _size;

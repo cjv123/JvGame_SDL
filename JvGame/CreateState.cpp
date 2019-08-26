@@ -16,22 +16,22 @@ void CreateState::create()
 	add(_bg);
 	_bg->velocity.x = -30;
 	
-	JvSprite* buttonSprite = new JvSprite;
-	buttonSprite->loadGraphic("homebutton.png");
-	JvSprite* buttonSpSel = new JvSprite;
-	buttonSpSel->loadGraphic("homebutton_sel.png");
-	JvButton* startButton = new JvButton(JvG::width/2-buttonSprite->width/2,JvG::height-JvG::height/4,
-		buttonSprite->width,buttonSprite->height);
-	startButton->loadGraphic(buttonSprite,buttonSpSel);
-	startButton->setTitle("MAIN MENU",FONT_NAME);
-	startButton->setCallback(create_back_callback);
-	add(startButton);
+	//JvSprite* buttonSprite = new JvSprite;
+	//buttonSprite->loadGraphic("homebutton.png");
+	//JvSprite* buttonSpSel = new JvSprite;
+	//buttonSpSel->loadGraphic("homebutton_sel.png");
+	//JvButton* startButton = new JvButton(JvG::width/2-buttonSprite->width/2,JvG::height-JvG::height/4,
+	//	buttonSprite->width,buttonSprite->height);
+	//startButton->loadGraphic(buttonSprite,buttonSpSel);
+	//startButton->setTitle("MAIN MENU",FONT_NAME);
+	//startButton->setCallback(create_back_callback);
+	//add(startButton);
 	
 
-	JvTextPad* text = new JvTextPad(JvG::width/2-160/2,10,160,90,FONT_NAME,"               CREATES\n\
+	JvTextPad* text = new JvTextPad(10,10,300,220,FONT_NAME,"               CREATES\n\
 Game designer: Jianwei Chen\nProgrammer: Jianwei Chen\nArt: Chu He\nGame engine: JvGame\n\Power by ZF stdio 2012.");
-	text->setTextSize(8);
-	text->setLineHight(8);
+	text->setTextSize(16);
+	//text->setLineHight(8);
 	//text->setTextPostion(5,0);
 	text->show();
 	add(text);
@@ -43,5 +43,12 @@ void CreateState::update()
 	{
 		_bg->x = JvG::width;
 	}
+
+	if (JvG::joystick->isJustPreess(BCODE) || JvG::joystick->isJustPreess(ACODE))
+	{
+		JvG::switchState(new HomeState);
+	}
+
+
 	JvState::update();
 }

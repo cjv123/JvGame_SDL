@@ -35,8 +35,11 @@ class JvJoystick : public JvGroup
 public:
 	JvJoystick();
 	virtual ~JvJoystick();
+
 	void pressDown(KEYCODE keycode);
 	void pressUp(KEYCODE keycode);
+	void pressDownOrUp(KEYCODE keycode, bool down);
+
 	void mouseDown(int x, int y,int id = 0);
 	void mouseUp(int x,int y,int id = 0);
 	void mouseMove(int x,int y,int id =0);
@@ -96,6 +99,10 @@ public:
 	void clearPoints();
 	
 	virtual void update();
+
+	virtual void updateSDLInput(SDL_Event& e);
+
+	bool isMouseEnable();
 protected:
 //	pointf _mousePoint;
 //	MOUSESTATUS _mouseStatus;
@@ -103,6 +110,8 @@ protected:
 	int _pointIndex;
 
 	KeyMapType _keyMap;
+
+	bool _mouseEnable;
 private:
 };
 

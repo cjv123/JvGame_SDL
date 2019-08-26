@@ -40,6 +40,9 @@ public:
 
 	void setPosition(int X,int Y);
 
+	void selectMode();
+	void normalMode();
+
 	virtual void  update();
 protected:
 	JvSprite* _offP;
