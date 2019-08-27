@@ -49,6 +49,7 @@ JvEmitter* JvEmitter::createSprites(SDL_Texture* Graphics,unsigned int Quantity/
 		tf = textureW/textureH;
 	}
 	
+	quantity = Quantity;
 	for(int i = 0; i < Quantity; i++)
 	{
 		sP = new JvSprite();
@@ -58,6 +59,7 @@ JvEmitter* JvEmitter::createSprites(SDL_Texture* Graphics,unsigned int Quantity/
 		if(Multiple)
 		{
 			r = JvU::random()*tf;
+			sP->frameWidth = sP->frameHeight = textureH;
 		}
 		else
 		{

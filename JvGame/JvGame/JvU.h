@@ -28,7 +28,7 @@ public:
 	static double roundingError; 
 	static unsigned int quadTreeDivisions;
 
-	static JvQuadTree* quadTreeP;
+	//static JvQuadTree* quadTreeP;
 
 	static JvRect quadTreeBounds;
 

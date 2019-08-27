@@ -17,7 +17,7 @@ void ExitDoor::update()
 		overlaps(GameState::heroP) && 
 		GameState::heroP->onFloor
 		){    
-		//if(JvG::joystick->isJustPreess(UPCODE)){
+		if(JvG::joystick->isJustPreess(UPCODE)){
 			
 			if(GameState::isGetKey)
 			{
@@ -45,7 +45,7 @@ void ExitDoor::update()
 			{
 				JvG::play("ding.wav",1);
 			}
-		//}
+		}
 	}
 	JvSprite::update();
 }

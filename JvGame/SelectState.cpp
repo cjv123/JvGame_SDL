@@ -171,7 +171,8 @@ void SelectState::create()
 	}
 
 	
-	_curSelectButton = _selectButtons[_curSelectLv - 1];
+	_curSelectLv = _curMaxLv;
+	_curSelectButton = _selectButtons[_curMaxLv - 1];
 	updateSelectButton();
 
 	/*JvSprite* backBSp = new JvSprite;
@@ -233,6 +234,8 @@ void SelectState::update()
 		{
 			_curSelectLv-=7;
 			updateSelectButton();
+
+			JvG::play("shoot.wav");
 		}
 	}
 	else if (JvG::joystick->isJustPreess(DOWNCODE))
@@ -241,6 +244,7 @@ void SelectState::update()
 		{
 			_curSelectLv+=7;
 			updateSelectButton();
+			JvG::play("shoot.wav");
 		}
 	}
 	else if (JvG::joystick->isJustPreess(LEFTCODE))
@@ -249,6 +253,8 @@ void SelectState::update()
 		if (_curSelectLv < 1)
 			_curSelectLv = _curMaxLv;
 		updateSelectButton();
+
+		JvG::play("shoot.wav");
 	}
 	else if (JvG::joystick->isJustPreess(RIGHTCODE))
 	{
@@ -257,6 +263,8 @@ void SelectState::update()
 			_curSelectLv = 1;
 
 		updateSelectButton();
+
+		JvG::play("shoot.wav");
 	}
 
 	

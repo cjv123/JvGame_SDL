@@ -50,6 +50,11 @@ JvButton* GameState::pauseButton = NULL;
 JvText* GameState::gameoverTile = NULL;
 JvText* GameState::pauseTile = NULL;
 JvTextPad* GameState::nowShowTextPad = NULL;
+int GameState::_maxPauseMenuIndex = 3;
+int GameState::_curPauseMenuIndex = 0;
+JvButton* GameState::_pauseMenus[3] = { NULL };
+bool GameState::curFramePauseKeyDown = false;
+bool GameState::startGame = false;
 
 static void ResButton_callback(int par)
 {
@@ -90,7 +95,10 @@ static void pause_callback(int par)
 
 GameState::GameState()
 {
-	
+	for (int i = 0; i < _maxPauseMenuIndex; i++)
+	{
+		GameState::_pauseMenus[i] = NULL;
+	}
 }
 
 GameState::~GameState()
@@ -354,8 +362,9 @@ void GameState::create()
 	
 	char lvstr[7];
 	sprintf(lvstr,"Lv.%d",nowLv);
-	JvText* lvtxt = new JvText(0,0,0,0,FONT_NAME,lvstr);
-	lvtxt->setSize(8);lvtxt->setColor(MAKE_RGBA_8888(0,0,0,255));
+	JvText* lvtxt = new JvText(0,0,0,0,FONT_NAME,lvstr,11);
+	//lvtxt->setSize(8);
+	lvtxt->setColor(MAKE_RGBA_8888(0,0,0,255));
 	lvtxt->scrollFactor.x = lvtxt->scrollFactor.y =0;
 	add(lvtxt);
 
@@ -375,7 +384,7 @@ void GameState::create()
 
 	JvG::playMusic("bgm.mp3");
 	
-	JvSprite* pauseBSp = new JvSprite;
+	/*JvSprite* pauseBSp = new JvSprite;
 	JvSprite* pauseBSpH = new JvSprite;
 	pauseBSp->loadGraphic("pause.png");
 	pauseBSpH->loadGraphic("pause_sel.png");
@@ -383,7 +392,7 @@ void GameState::create()
 		pauseBSp->width,pauseBSp->height);
 	pauseButton->loadGraphic(pauseBSp,pauseBSpH);
 	pauseButton->setCallback(pause_callback);
-	add(pauseButton);
+	add(pauseButton);*/
 	
 	SDL_Texture* bimg = JvU::loadTexture("menubutton.png");
 	SDL_Texture* bimgh = JvU::loadTexture("menubutton_sel.png");
@@ -393,7 +402,7 @@ void GameState::create()
 	int by = JvG::height/2 - spb->height/4;
 	resButton = new JvButton(0,by,spb->width,spb->height);
 	resButton->loadGraphic(spb,spbH);
-	resButton->setTitle("RESTART",FONT_NAME,0,0,12);
+	resButton->setTitle("RESTART",FONT_NAME,32,6,12);
 	nextButton = new JvButton(100,by+50,spb->width,spb->height);
 	spb = new JvSprite(0,0,bimg);
 	spbH = new JvSprite(0,0,bimgh);
@@ -403,13 +412,13 @@ void GameState::create()
 	spb = new JvSprite(0,0,bimg);
 	spbH = new JvSprite(0,0,bimgh);
 	exitButton->loadGraphic(spb,spbH);
-	exitButton->setTitle("MAIN MENU",FONT_NAME,0,0,12);
+	exitButton->setTitle("MAIN MENU",FONT_NAME,26,6,12);
 
 	backButton = new JvButton(0,by,spb->width,spb->height);
 	spb = new JvSprite(0,0,bimg);
 	spbH = new JvSprite(0,0,bimgh);
 	backButton->loadGraphic(spb,spbH);
-	backButton->setTitle("RESUME GAME",FONT_NAME,0,0,12);
+	backButton->setTitle("RESUME GAME",FONT_NAME,14,6,12);
 
 	resButton->setCallback(ResButton_callback);
 	nextButton->setCallback(NextButton_callback);
@@ -429,9 +438,9 @@ void GameState::create()
 	buttonBg->scrollFactor.y=0;
 	buttonBg->setCollide(false);
 	
-	gameoverTile = new JvText(0,2,200,30,FONT_NAME,"GAME OVER");
+	gameoverTile = new JvText(0,2,200,30,FONT_NAME,"GAME OVER",16);
 	gameoverTile->x = JvG::width/2 - gameoverTile->width/2;
-	gameoverTile->setSize(16);
+	//gameoverTile->setSize(16);
 	gameoverTile->setColor(MAKE_RGBA_8888(255,0,0,255));
 	gameoverTile->scrollFactor.x =0;
 	gameoverTile->scrollFactor.y =0;
@@ -441,26 +450,86 @@ void GameState::create()
 	add(nextButton);
 	add(exitButton);
 	add(backButton);
+
 	
-	pauseTile = new JvText(0,2,200,30,FONT_NAME,"PAUSE");
+	pauseTile = new JvText(0,2,200,30,FONT_NAME,"PAUSE",16);
 	pauseTile->x = JvG::width/2 - pauseTile->width/2;
-	pauseTile->setSize(16);
+	//pauseTile->setSize(16);
 	pauseTile->setColor(MAKE_RGBA_8888(255,0,0,255));
 	pauseTile->scrollFactor.x=0;
 	pauseTile->scrollFactor.y=0;
 	pauseTile->visible = false;
 	add(pauseTile);
 
+	startGame = true;
 }
 
 void GameState::update()
 {
+	if (JvG::pause==false 
+		&& startGame==true
+		&& JvG::joystick->isJustPreess(STARTCODE)
+	)
+	{
+		::pause_callback(0);
+		curFramePauseKeyDown = true;
+	}
+
 	JvState::collide();
 	JvState::update();
+
+	if (exitButton->visible==true)
+	{
+		if (JvG::joystick->isJustPreess(UPCODE))
+		{
+			_curPauseMenuIndex--;
+			if (_curPauseMenuIndex < 0)
+			{
+				_curPauseMenuIndex = _maxPauseMenuIndex;
+			}
+			updatePauseMenu();
+		}
+		else if (JvG::joystick->isJustPreess(DOWNCODE))
+		{
+			_curPauseMenuIndex++;
+			if (_curPauseMenuIndex > _maxPauseMenuIndex)
+			{
+				_curPauseMenuIndex = 0;
+			}
+			updatePauseMenu();
+		}
+		else if (JvG::joystick->isJustPreess(ACODE))
+		{
+			if (_pauseMenus[_curPauseMenuIndex])
+			{
+				JvButton* curMenuButton = _pauseMenus[_curPauseMenuIndex];
+				if (curMenuButton == backButton)
+				{
+					::back_callback(0);
+				}
+				else if (curMenuButton == resButton)
+				{
+					::ResButton_callback(0);
+				}
+				else if (curMenuButton == exitButton)
+				{
+					::Exit_callback(0);
+				}
+				else if (curMenuButton == nextButton)
+				{
+					::NextButton_callback(0);
+				}
+			}
+		}
+
+	}
+
+	curFramePauseKeyDown = false;
 }
 
 void GameState::fail()
 {
+	startGame = false;
 	resButton->visible = true;
 	exitButton->visible = true;
 	buttonBg->visible = true;
@@ -468,14 +537,41 @@ void GameState::fail()
 	resButton->setPosition(JvG::width/2-resButton->width/2,40);
 	exitButton->setPosition(JvG::width/2-exitButton->width/2,82);
 	
+	_pauseMenus[0] = resButton;
+	_pauseMenus[1] = exitButton;
+	_maxPauseMenuIndex = 1;
+	_curPauseMenuIndex = 0;
+	updatePauseMenu();
 }
 
 void GameState::success()
 {
+	startGame = false;
 	nextButton->visible = true;
 	exitButton->visible = true;
 	nextButton->y = 70;
 	exitButton->y = 125;
+
+	_pauseMenus[0] = nextButton;
+	_pauseMenus[1] = exitButton;
+	_maxPauseMenuIndex = 1;
+	_curPauseMenuIndex = 0;
+	updatePauseMenu();
+}
+
+void GameState::updatePauseMenu()
+{
+	for (int i = 0; i <= _maxPauseMenuIndex; i++)
+	{
+		if (i == _curPauseMenuIndex)
+		{
+			_pauseMenus[i]->selectMode();
+		}
+		else
+		{
+			_pauseMenus[i]->normalMode();
+		}
+	}
 }
 
 void GameState::pause()
@@ -496,6 +592,7 @@ void GameState::pause()
 			JvG::pause = false;
 			nowShowTextPad = NULL;
 		}
+	
 		return;
 	}
 
@@ -509,8 +606,26 @@ void GameState::pause()
 		backButton->setPosition(JvG::width/2-resButton->width/2,JvG::height/6);
 		resButton->setPosition(JvG::width/2-resButton->width/2,JvG::height/6 + 50);
 		exitButton->setPosition(JvG::width/2-exitButton->width/2,JvG::height/6 + 100);
+
+		_pauseMenus[0] = backButton;
+		_pauseMenus[1] = resButton;
+		_pauseMenus[2] = exitButton;
+		_maxPauseMenuIndex = 2;
+		_curPauseMenuIndex = 0;
+		updatePauseMenu();
 	}
 	backButton->update();
 	resButton->update();
 	exitButton->update();
+
+	if (curFramePauseKeyDown == false 
+		&& (JvG::joystick->isJustPreess(STARTCODE)
+			|| JvG::joystick->isJustPreess(BCODE)
+			)
+		)
+	{
+		::back_callback(0);
+		curFramePauseKeyDown = true;
+	}
+
 }

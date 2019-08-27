@@ -23,6 +23,12 @@ private:
 	JvButton* nextButton;
 	JvSprite* bBg;
 	JvText* gameoverTile;
+
+
+	int _curSelectIndex;
+	int _maxSelectIndex;
+
+	void updateMenu();
 };
 
 #endif

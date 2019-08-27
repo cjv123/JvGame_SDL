@@ -104,8 +104,8 @@ void JvButton::update()
 void JvButton::setTitle(const char* Title,const char* FontFilename,
 						int X/* =0 */,int Y/* =0 */,int Size/* =8*/)
 {
-	_text = new JvText(x+X,y+Y,width,height,FontFilename,Title);
-	_text->setSize(Size);
+	_text = new JvText(x+X,y+Y,width,height,FontFilename,Title,Size);
+	//_text->setSize(Size);
 	_text->scrollFactor.x = _text->scrollFactor.y =0;
 	add(_text);
 	_textX = X;

@@ -10,7 +10,7 @@ double JvU::roundingError = 0.0001;
 
 unsigned int JvU::quadTreeDivisions = 3;
 
-JvQuadTree* JvU::quadTreeP = NULL;
+//JvQuadTree* JvU::quadTreeP = NULL;
 JvRect JvU::quadTreeBounds; 
 
 double JvU::floor(double N)
@@ -97,31 +97,31 @@ double JvU::computeVelocity(double Velocity, double Acceleration/* =0 */,
 
 bool JvU::overlap(JvObject* ObjectP1,JvObject* ObjectP2,OVERLAP_CALLBACK Callback/*=NULL*/)
 {
-	if (quadTreeP !=NULL)
+	/*if (quadTreeP !=NULL)
 	{
 		delete quadTreeP;
 		quadTreeP = NULL;
-	}
+	}*/
 
 	if( (ObjectP1 == NULL) || !ObjectP1->exists ||
 		(ObjectP2 == NULL) || !ObjectP2->exists )
 		return false;
 
-	quadTreeP = new JvQuadTree(quadTreeBounds.x,quadTreeBounds.y,quadTreeBounds.width,quadTreeBounds.height);
-	quadTreeP->add(ObjectP1,JvQuadTree::A_LIST);
+	JvQuadTree quadTree(quadTreeBounds.x, quadTreeBounds.y, quadTreeBounds.width, quadTreeBounds.height);
+	quadTree.add(ObjectP1,JvQuadTree::A_LIST);
 	if(ObjectP1 == ObjectP2)
-		return quadTreeP->overlap(false,Callback);
-	quadTreeP->add(ObjectP2,JvQuadTree::B_LIST);
-			return quadTreeP->overlap(true,Callback);
+		return quadTree.overlap(false,Callback);
+	quadTree.add(ObjectP2,JvQuadTree::B_LIST);
+			return quadTree.overlap(true,Callback);
 }
 
 bool JvU::collide(JvObject* ObjectP1,JvObject* ObjectP2)
 {
-	if (quadTreeP !=NULL)
-	{
-		delete quadTreeP;
-		quadTreeP = NULL;
-	}
+	//if (quadTreeP !=NULL)
+	//{
+	//	delete quadTreeP;
+	//	quadTreeP = NULL;
+	//}
 
 	if( (ObjectP1 == NULL) || !ObjectP1->exists ||
 		(ObjectP2 == NULL) || !ObjectP2->exists )
@@ -129,15 +129,15 @@ bool JvU::collide(JvObject* ObjectP1,JvObject* ObjectP2)
 		return false;
 	}
 
-	quadTreeP = new JvQuadTree(quadTreeBounds.x,quadTreeBounds.y,quadTreeBounds.width,quadTreeBounds.height);
-	quadTreeP->add(ObjectP1,JvQuadTree::A_LIST);
+	JvQuadTree quadTree(quadTreeBounds.x,quadTreeBounds.y,quadTreeBounds.width,quadTreeBounds.height);
+	quadTree.add(ObjectP1,JvQuadTree::A_LIST);
 	bool match = (ObjectP1 == ObjectP2);
 	if(!match)
 	{
-		quadTreeP->add(ObjectP2,JvQuadTree::B_LIST);
+		quadTree.add(ObjectP2,JvQuadTree::B_LIST);
 	}
-	bool cx = quadTreeP->overlap(!match,solveXCollision);
-	bool cy = quadTreeP->overlap(!match,solveYCollision);
+	bool cx = quadTree.overlap(!match,solveXCollision);
+	bool cy = quadTree.overlap(!match,solveYCollision);
 	return cx || cy;		
 }
 

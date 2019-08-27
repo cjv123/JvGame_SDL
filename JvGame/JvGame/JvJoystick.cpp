@@ -10,6 +10,8 @@ JvJoystick::JvJoystick() : _mouseEnable(false)
 	_keyMap.insert(KeyMapType::value_type(BCODE,NOPRESS));
 	_keyMap.insert(KeyMapType::value_type(XCODE,NOPRESS));
 	_keyMap.insert(KeyMapType::value_type(YCODE,NOPRESS));
+	_keyMap.insert(KeyMapType::value_type(STARTCODE,NOPRESS));
+	_keyMap.insert(KeyMapType::value_type(SELECTCODE,NOPRESS));
 	
 	_pointIndex = 0;
 }
@@ -75,7 +77,7 @@ bool JvJoystick::isJustPreess(KEYCODE keycode)
 
 	if (_keyMap[keycode] == JUSTPRESS)
 	{
-		_keyMap[keycode] = PRESS;
+		//_keyMap[keycode] = PRESS;
 		return true;
 	}
 	return false;
@@ -151,7 +153,7 @@ void JvJoystick::mouseMove(int x,int y,int id)
 void JvJoystick::update()
 {
 	int i=0;
-	for (;i<5;i++)
+	for (; i < 5; i++)
 	{
 		if (_mousePoint[i].status == MOUSEUP)
 		{
@@ -160,6 +162,15 @@ void JvJoystick::update()
 			_mousePoint[i].status = MOUSENONE;
 		}
 
+	}
+
+	KeyMapType::iterator it = _keyMap.begin();
+	for (; it != _keyMap.end(); it++)
+	{
+		if (it->second == JUSTPRESS)
+		{
+			it->second = PRESS;
+		}
 	}
 
 }
@@ -200,6 +211,12 @@ void JvJoystick::updateSDLInput(SDL_Event& e)
 			break;
 		case SDLK_u:
 			pressDownOrUp(YCODE,down);
+			break;
+		case SDLK_RETURN:
+			pressDownOrUp(STARTCODE,down);
+			break;
+		case SDLK_SPACE:
+			pressDownOrUp(SELECTCODE,down);
 			break;
 		case SDLK_ESCAPE:
 			exit(0);

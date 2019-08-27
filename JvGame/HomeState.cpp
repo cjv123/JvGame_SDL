@@ -181,10 +181,12 @@ void HomeState::updateArrow()
 		if (JvG::joystick->isJustPreess(DOWNCODE))
 		{
 			_curSelectIndex++;
+			JvG::play("shoot.wav");
 		}
 		else if (JvG::joystick->isJustPreess(UPCODE))
 		{
 			_curSelectIndex--;
+			JvG::play("shoot.wav");
 		}
 		else if (JvG::joystick->isJustPreess(ACODE))
 		{

@@ -78,7 +78,7 @@ void JvSound::playMusic(const std::string& filename)
 	}
 	else 
 	{
-		Mix_PlayMusic(_musicBuf,true);
+		Mix_PlayMusic(_musicBuf,-1);
 	}
 }
 

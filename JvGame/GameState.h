@@ -73,7 +73,17 @@ public:
 	static GameData* gameData;
 	
 protected:
+	static void updatePauseMenu();
+
 	bool _isShowMenu;
+
+	static int _maxPauseMenuIndex;
+	static int _curPauseMenuIndex;
+	static JvButton* _pauseMenus[3];
+	static bool curFramePauseKeyDown;
+
+	static bool startGame;
+
 private:
 };
 
