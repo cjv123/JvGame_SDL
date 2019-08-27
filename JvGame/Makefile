@@ -2,14 +2,14 @@ CC=g++
 target = supercatrio
 
 SRCS=$(wildcard *.cpp)
-SRCS:=$(wildcard JvGame/*.cpp)
+SRCS+=$(wildcard JvGame/*.cpp)
 OBJS=$(patsubst %cpp,%o,$(SRCS))
 
 INCLUDE = -I/usr/include/SDL2
-LIB = -L/usr/lib
+LIB = -L/usr/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
-$(target):$(OBJS)
-	$(CC) main.o -o super $(LIB)
+all:$(OBJS)
+	$(CC) $(OBJS) -o $(target) $(LIB)
 
 %.o:%.cpp
 	$(CC) -c $< -o $@  $(INCLUDE)

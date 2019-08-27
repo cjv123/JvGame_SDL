@@ -3,7 +3,7 @@
 
 #include "JvGame/JvState.h"
 
-JvButton;
+class JvButton;
 
 class SelectState : public JvState
 {

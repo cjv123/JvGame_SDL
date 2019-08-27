@@ -179,7 +179,7 @@ void GameState::create()
 		buffer << file.rdbuf();
 		string strTmp(buffer.str());
 		xmldata = (unsigned char*)strTmp.c_str();
-		assert(xmldata,"fuck");
+		assert(xmldata);
 		doc.Parse((const char*)xmldata);
 	}
 
