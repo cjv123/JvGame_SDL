@@ -109,9 +109,15 @@ void JvGame::create()
 			if (_SDLRenderer == NULL)
 			{
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
-				success = false;
+				_SDLRenderer = SDL_CreateRenderer(_SDLWindow, -1, SDL_RENDERER_SOFTWARE);
+				if (_SDLRenderer == NULL)
+				{
+					printf("Renderer(software) could not be created! SDL Error: %s\n", SDL_GetError());
+					success = false;
+				}
 			}
-			else
+
+			if(success)
 			{
 				//Initialize renderer color
 				//SDL_SetRenderDrawColor(_SDLRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
