@@ -26,6 +26,11 @@ JvText::JvText(double X,double Y, double Width,double Height,const char* fontnam
 
 JvText::~JvText()
 {
+	if (_texure)
+	{
+		SDL_DestroyTexture(_texure);
+		_texure = NULL;
+	}
 }
 
 void JvText::setText(string& Text)
