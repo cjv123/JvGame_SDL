@@ -105,7 +105,7 @@ void JvGame::create()
 		{
 			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 			//Create renderer for window
-			_SDLRenderer = SDL_CreateRenderer(_SDLWindow, -1, SDL_RENDERER_ACCELERATED);
+			_SDLRenderer = SDL_CreateRenderer(_SDLWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 			if (_SDLRenderer == NULL)
 			{
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());

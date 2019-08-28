@@ -23,7 +23,7 @@ KeyObj::KeyObj(double X,double Y) : JvSprite(X,Y)
 
 void KeyObj::update()
 {
-	if(overlaps(GameState::heroP)){
+	if(!_isPlayAnim && overlaps(GameState::heroP)){
 		_isPlayAnim = true;
 		GameState::isGetKey=true;
 		JvG::play("eat.wav",1);

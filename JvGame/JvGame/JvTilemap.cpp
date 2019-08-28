@@ -194,7 +194,7 @@ void JvTilemap::renderTile()
 			}
 			
 			rx = (int)(val * (_tileWidth / scale)) % (int)_textureWidth;
-			ry = (val * (_tileWidth / scale)) / _textureHeight;
+			ry = (val * (_tileWidth / scale)) / _textureWidth;
  
  			rx +=x;
  			ry +=y;

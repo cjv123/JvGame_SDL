@@ -28,7 +28,7 @@ Coin::Coin(double X,double Y) : JvSprite(X,Y)
 
 void Coin::update()
 {
-	if (overlaps(GameState::heroP))
+	if (!_isPlayAnim && overlaps(GameState::heroP))
 	{
 		_isPlayAnim = true;
 		GameState::isGetStar = true;
