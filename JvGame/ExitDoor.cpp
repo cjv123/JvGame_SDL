@@ -12,8 +12,8 @@ ExitDoor::ExitDoor(double X,double Y) : JvSprite(X,Y)
 
 void ExitDoor::update()
 {
-	if(GameState::heroP->x>x && 
-		(GameState::heroP->x+GameState::heroP->width)<(x+width) &&
+	if(/*GameState::heroP->x>x && 
+		(GameState::heroP->x+GameState::heroP->width)<(x+width) &&*/
 		overlaps(GameState::heroP) && 
 		GameState::heroP->onFloor
 		){    

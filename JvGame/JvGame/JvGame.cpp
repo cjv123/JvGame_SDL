@@ -117,7 +117,7 @@ void JvGame::create()
 				}
 			}
 
-			if(success)
+			if(NULL!=_SDLRenderer)
 			{
 				//Initialize renderer color
 				//SDL_SetRenderDrawColor(_SDLRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
