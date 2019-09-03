@@ -103,13 +103,27 @@ void JvGame::create()
 		}
 		else
 		{
-			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
-			//Create renderer for window
-			_SDLRenderer = SDL_CreateRenderer(_SDLWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+			SDL_RendererInfo info;
+			int driverNum = SDL_GetNumRenderDrivers();
+			printf("render driver num:%d\n", driverNum);
+
+			for (int i = 0; i < driverNum; i++)
+			{
+				if (SDL_GetRenderDriverInfo(i, &info) == 0)
+				{
+					printf("render driver:%s\n", info.name);
+					_SDLRenderer = SDL_CreateRenderer(_SDLWindow, i, SDL_RENDERER_ACCELERATED);
+					if (_SDLRenderer != NULL)
+					{
+						break;
+					}
+				}
+			}
+
 			if (_SDLRenderer == NULL)
 			{
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
-				_SDLRenderer = SDL_CreateRenderer(_SDLWindow, -1, SDL_RENDERER_SOFTWARE);
+				_SDLRenderer = SDL_CreateRenderer(_SDLWindow, driverNum-1, SDL_RENDERER_SOFTWARE);
 				if (_SDLRenderer == NULL)
 				{
 					printf("Renderer(software) could not be created! SDL Error: %s\n", SDL_GetError());
@@ -119,6 +133,7 @@ void JvGame::create()
 
 			if(NULL!=_SDLRenderer)
 			{
+				//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 				//Initialize renderer color
 				//SDL_SetRenderDrawColor(_SDLRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_Rect rendererRect{0,0,JvG::width*_gameScale,JvG::height*_gameScale};
