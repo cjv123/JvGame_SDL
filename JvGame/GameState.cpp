@@ -277,7 +277,7 @@ void GameState::create()
 			int sbi=0;
 			for (;sbi<n;sbi++)
 			{
-				StabR* stab = new StabR(x,y+sbi*16);
+				StabR* stab = new StabR(x,y+sbi*8);
 				add(stab);
 			}
 			
