@@ -200,9 +200,9 @@ void GameState::create()
 		double x = atof(xstr.c_str());
 		double y = atof(ystr.c_str());
 	
-		int ret = (int)elemet->Attribute("n");
+		const char* ret = elemet->Attribute("n");
 		int n=1;
-		if (ret!=0)
+		if (ret!=NULL)
 		{
 			string nstr = elemet->Attribute("n");
 			n = atoi(nstr.c_str()); 
@@ -325,14 +325,14 @@ void GameState::create()
 		else if (classname == "QueObj")
 		{
 			string quetxt;
-			int ret = (int)elemet->Attribute("text");
-			if (ret!=0)
+			const char* ret = elemet->Attribute("text");
+			if (ret != NULL)
 			{
 				quetxt = elemet->Attribute("text");
 			}
 			
 			JvSprite* qitem=NULL;
-			ret = (int)elemet->Attribute("item");
+			ret = elemet->Attribute("item");
 			if (ret != 0)
 			{
 				string itemname = elemet->Attribute("item");
