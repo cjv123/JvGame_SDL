@@ -120,11 +120,11 @@ void HomeState::create()
 	_arrow = arrowSp;
 
 	JvText* powertxt = new JvText(10,JvG::height,0,0,FONT_NAME,
-		"Power By ZF Studio 2019.Dirve by JvGame.",11);
+		"Power By ZF Studio 2012.Dirve by JvGame.",11);
 	powertxt->x = JvG::width/2 - powertxt->width/2;
 	powertxt->y = powertxt->y - powertxt->height-8;
 	add(powertxt);
-	
+
 	if (_isMusic)
 	{
 		JvG::playMusic("home.mp3");

@@ -93,6 +93,23 @@ void JvGame::create()
 	}
 	else
 	{
+	    // Check for joystick
+	    if (SDL_NumJoysticks() > 0) {
+	        // Open joystick
+	        SDL_Joystick *joy = SDL_JoystickOpen(0);
+
+	        if (joy) {
+	            printf("Opened Joystick 0\n");
+	            printf("Name: %s\n", SDL_JoystickNameForIndex(0));
+	            printf("Number of Axes: %d\n", SDL_JoystickNumAxes(joy));
+	            printf("Number of Buttons: %d\n", SDL_JoystickNumButtons(joy));
+	            printf("Number of Balls: %d\n", SDL_JoystickNumBalls(joy));
+	        } else {
+	            printf("Couldn't open Joystick 0\n");
+	        }
+
+	    }
+
 		//Create window
 		_SDLWindow = SDL_CreateWindow("JvGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 			JvG::width*_gameScale, JvG::height*_gameScale, SDL_WINDOW_SHOWN);

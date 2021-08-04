@@ -228,29 +228,30 @@ void JvJoystick::updateSDLInput(SDL_Event& e)
 	}
 	else if(e.type == SDL_JOYBUTTONDOWN || e.type == SDL_JOYBUTTONUP)
 	{
+//	    printf("button %d\n",e.jbutton.button);
 	    bool down = (e.type == SDL_JOYBUTTONDOWN);
 	    switch (e.jbutton.button)
 	    {
-	        case 6:
-	            pressDownOrUp(UPCODE,down);
-	            break;
+//	        case 6:
+//	            pressDownOrUp(UPCODE,down);
+//	            break;
+//
+//            case 7:
+//                pressDownOrUp(DOWNCODE,down);
+//                break;
+//
+//            case 8:
+//                pressDownOrUp(LEFTCODE,down);
+//                break;
+//
+//            case 9:
+//                pressDownOrUp(RIGHTCODE,down);
+//                break;
 
-            case 7:
-                pressDownOrUp(DOWNCODE,down);
-                break;
-
-            case 8:
-                pressDownOrUp(LEFTCODE,down);
-                break;
-
-            case 9:
-                pressDownOrUp(RIGHTCODE,down);
-                break;
-
-            case 1:
+            case 0:
                 pressDownOrUp(ACODE,down);
                 break;
-            case 0:
+            case 1:
                 pressDownOrUp(BCODE,down);
                 break;
             case 2:
@@ -259,17 +260,46 @@ void JvJoystick::updateSDLInput(SDL_Event& e)
             case 3:
                 pressDownOrUp(YCODE,down);
                 break;
-            case 14:
+            case 6:
                 pressDownOrUp(STARTCODE,down);
                 break;
-            case 15:
-                exit(0);
-//                pressDownOrUp(SELECTCODE,down);
+            case 7:
+                pressDownOrUp(SELECTCODE,down);
                 break;
-
+	        case 9:
+	            exit(0);
+                break;
             default:
                 break;
 	    }
+	}
+	else if(e.type == SDL_JOYHATMOTION)
+	{
+//	    printf("joyhat:%d\n",e.jhat.value);
+        bool down = (e.jhat.value != 0);
+        if(down){
+            switch(e.jhat.value)
+            {
+                case SDL_HAT_UP:
+                    pressDownOrUp(UPCODE,down);
+                    break;
+                case SDL_HAT_DOWN:
+                    pressDownOrUp(DOWNCODE,down);
+                    break;
+                case SDL_HAT_LEFT:
+                    pressDownOrUp(LEFTCODE,down);
+                    break;
+                case SDL_HAT_RIGHT:
+                    pressDownOrUp(RIGHTCODE,down);
+                    break;
+            }
+        }else{
+            pressDownOrUp(UPCODE,down);
+            pressDownOrUp(DOWNCODE,down);
+            pressDownOrUp(LEFTCODE,down);
+            pressDownOrUp(RIGHTCODE,down);
+        }
+
 	}
 }
 

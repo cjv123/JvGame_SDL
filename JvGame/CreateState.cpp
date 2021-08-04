@@ -29,7 +29,7 @@ void CreateState::create()
 	
 
 	JvTextPad* text = new JvTextPad(10,10,300,220,FONT_NAME,"               CREATES\n\
-Game designer: Jianwei Chen\nProgrammer: Jianwei Chen\nArt: Chu He\nGame engine: JvGame\n\Power by ZF stdio 2012.");
+Game designer: ZF Coder\nProgrammer: ZF Coder\nGame engine: JvGame\n\Power by ZF stdio 2012.");
 	text->setTextSize(16);
 	//text->setLineHight(8);
 	//text->setTextPostion(5,0);
