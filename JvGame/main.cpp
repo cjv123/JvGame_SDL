@@ -7,11 +7,18 @@
 #include "GameState.h"
 #include "HomeState.h"
 #include "TestState.h"
-
+#include "ini.h"
 
 int main(int argc, char* argv[])
 {
-	JvGame jvgame(320, 240,1);
+    mINI::INIFile file("config.ini");
+    mINI::INIStructure  ini;
+    file.read(ini);
+    std::string width = ini["display"]["width"];
+    std::string height = ini["display"]["height"];
+    std::string scale = ini["display"]["scale"];
+
+	JvGame jvgame(atoi(width.c_str()), atoi(height.c_str()),atof(scale.c_str()));
 	jvgame.setInitState(new LogoState);
 	jvgame.run();
 

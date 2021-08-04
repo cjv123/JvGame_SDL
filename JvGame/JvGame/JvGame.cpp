@@ -86,7 +86,7 @@ void JvGame::create()
 	JvU::setWorldBounds(0,0,JvG::width,JvG::height);	
 
 	bool success = true;
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_JOYSTICK) < 0)
 	{
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 		success = false;

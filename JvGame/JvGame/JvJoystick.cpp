@@ -226,6 +226,51 @@ void JvJoystick::updateSDLInput(SDL_Event& e)
 			break;
 		}
 	}
+	else if(e.type == SDL_JOYBUTTONDOWN || e.type == SDL_JOYBUTTONUP)
+	{
+	    bool down = (e.type == SDL_JOYBUTTONDOWN);
+	    switch (e.jbutton.button)
+	    {
+	        case 6:
+	            pressDownOrUp(UPCODE,down);
+	            break;
+
+            case 7:
+                pressDownOrUp(DOWNCODE,down);
+                break;
+
+            case 8:
+                pressDownOrUp(LEFTCODE,down);
+                break;
+
+            case 9:
+                pressDownOrUp(RIGHTCODE,down);
+                break;
+
+            case 1:
+                pressDownOrUp(ACODE,down);
+                break;
+            case 0:
+                pressDownOrUp(BCODE,down);
+                break;
+            case 2:
+                pressDownOrUp(XCODE,down);
+                break;
+            case 3:
+                pressDownOrUp(YCODE,down);
+                break;
+            case 14:
+                pressDownOrUp(STARTCODE,down);
+                break;
+            case 15:
+                exit(0);
+//                pressDownOrUp(SELECTCODE,down);
+                break;
+
+            default:
+                break;
+	    }
+	}
 }
 
 bool JvJoystick::isMouseEnable()
