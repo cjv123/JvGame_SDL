@@ -18,6 +18,7 @@ JvCamera* JvG::camera = NULL;
 JvSave* JvG::save=NULL;
 bool JvG::pause = false;
 JvSound* JvG::sound = NULL;
+mINI::INIStructure JvG::ini;
 
 void JvG::setGameData(JvGame* JvGameP,unsigned int Width,
 					  unsigned int Height)

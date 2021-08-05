@@ -486,7 +486,7 @@ void Hero::changeToMan()
 	addAnimation("die",dieframes,8);
 
 	y-=31-16;
-	//width=16;
+	width=16;
 
 	GameState::gamePad->walkMode();
 }
@@ -511,7 +511,7 @@ void Hero::changeToBall()
 	addAnimation("jump_down_b",moveframes,16);
 
 	y+=31-16;
-	//width=16-1;
+	width=15;
 }
 
 bool Hero::isCanBall()

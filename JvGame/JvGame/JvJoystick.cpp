@@ -230,48 +230,21 @@ void JvJoystick::updateSDLInput(SDL_Event& e)
 	{
 //	    printf("button %d\n",e.jbutton.button);
 	    bool down = (e.type == SDL_JOYBUTTONDOWN);
-	    switch (e.jbutton.button)
-	    {
-//	        case 6:
-//	            pressDownOrUp(UPCODE,down);
-//	            break;
-//
-//            case 7:
-//                pressDownOrUp(DOWNCODE,down);
-//                break;
-//
-//            case 8:
-//                pressDownOrUp(LEFTCODE,down);
-//                break;
-//
-//            case 9:
-//                pressDownOrUp(RIGHTCODE,down);
-//                break;
-
-            case 0:
-                pressDownOrUp(ACODE,down);
-                break;
-            case 1:
-                pressDownOrUp(BCODE,down);
-                break;
-            case 2:
-                pressDownOrUp(XCODE,down);
-                break;
-            case 3:
-                pressDownOrUp(YCODE,down);
-                break;
-            case 6:
-                pressDownOrUp(STARTCODE,down);
-                break;
-            case 7:
-                pressDownOrUp(SELECTCODE,down);
-                break;
-	        case 9:
-	            exit(0);
-                break;
-            default:
-                break;
-	    }
+	    if(e.jbutton.button==atoi(JvG::ini["joystick"]["a"].c_str())){
+            pressDownOrUp(ACODE,down);
+        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["b"].c_str())){
+            pressDownOrUp(BCODE,down);
+        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["x"].c_str())){
+            pressDownOrUp(XCODE,down);
+        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["y"].c_str())){
+            pressDownOrUp(YCODE,down);
+        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["start"].c_str())){
+            pressDownOrUp(STARTCODE,down);
+        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["select"].c_str())){
+            pressDownOrUp(SELECTCODE,down);
+        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["exit"].c_str())){
+	        exit(0);
+        }
 	}
 	else if(e.type == SDL_JOYHATMOTION)
 	{
@@ -301,6 +274,62 @@ void JvJoystick::updateSDLInput(SDL_Event& e)
         }
 
 	}
+	else if(e.type == SDL_JOYAXISMOTION)
+	{
+	    const int JOYSTICK_DEAD_ZONE = 8000;
+	    int xDir=0;
+	    int yDir=0;
+	    if(e.jaxis.which==0){
+	        //X axis motion
+	        if( e.jaxis.axis == 0 )
+	        {
+	            //Left of dead zone
+	            if( e.jaxis.value < -JOYSTICK_DEAD_ZONE )
+	            {
+	                xDir = -1;
+	            }
+	            //Right of dead zone
+	            else if( e.jaxis.value > JOYSTICK_DEAD_ZONE )
+	            {
+	                xDir =  1;
+	            }
+	            else
+	            {
+	                xDir = 0;
+	            }
+	        }
+	        //Y axis motion
+	        else if( e.jaxis.axis == 1 )
+	        {
+	            //Below of dead zone
+	            if( e.jaxis.value < -JOYSTICK_DEAD_ZONE )
+	            {
+	                yDir = -1;
+	            }
+	            //Above of dead zone
+	            else if( e.jaxis.value > JOYSTICK_DEAD_ZONE )
+	            {
+	                yDir =  1;
+	            }
+	            else
+	            {
+	                yDir = 0;
+	            }
+	        }
+	    }
+	    if(xDir==0){
+            pressDownOrUp(LEFTCODE,false);
+            pressDownOrUp(RIGHTCODE,false);
+        }else{
+            pressDownOrUp((xDir>0)?RIGHTCODE:LEFTCODE,true);
+        }
+	    if(yDir==0){
+            pressDownOrUp(UPCODE,false);
+            pressDownOrUp(DOWNCODE,false);
+        }else{
+            pressDownOrUp((yDir>0)?UPCODE:DOWNCODE,true);
+        }
+    }
 }
 
 bool JvJoystick::isMouseEnable()

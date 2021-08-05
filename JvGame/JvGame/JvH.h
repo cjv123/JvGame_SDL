@@ -23,6 +23,7 @@
 #include "JvState.h"
 #include "JvSave.h"
 #include "JvTextPad.h"
+#include "ini.h"
 
 
 #endif

@@ -1,5 +1,6 @@
 #ifndef _JVG_H
 #define _JVG_H
+#include "ini.h"
 
 class JvGame;
 class JvState;
@@ -10,24 +11,24 @@ class JvSound;
 
 
 /**
-*ÔÚÕâÀï·ÅÒ»Ð©È«¾Öº¯Êý£¬È«¾Ö¶ÔÏó
+*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©È«ï¿½Öºï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½Ö¶ï¿½ï¿½ï¿½
 */
 class JvG
 {
 public:
 	/**
-	 *ÉèÖÃÈ«¾ÖÊý¾Ý
-	 *@param JvGame* jvGame,JvGameµÄÖ¸Õë
-	 *@param unsigned int Width,ÆÁÄ»¿í
-	 *@param unsigned int Height,ÆÁÄ»¸ß
+	 *ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 *@param JvGame* jvGame,JvGameï¿½ï¿½Ö¸ï¿½ï¿½
+	 *@param unsigned int Width,ï¿½ï¿½Ä»ï¿½ï¿½
+	 *@param unsigned int Height,ï¿½ï¿½Ä»ï¿½ï¿½
 	 *@return void
 	 */
 	static void setGameData(JvGame* JvGameP,unsigned int Width,
 		unsigned int Height);
 
 	/**
-	 *¸ü»»³¡¾°
-	 *@param JvState* StateP,´ý¸ü»¯¹¤µÄstateÖ¸Õë
+	 *ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 *@param JvState* StateP,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½stateÖ¸ï¿½ï¿½
 	 *@return void
 	 */
 	static void switchState(JvState* StateP);
@@ -36,34 +37,34 @@ public:
 	static void play(const char* filename,float Volume=1.0f,bool Looped=false);
 	static void stopMusic();
 	
-	/*JvGameÖ¸Õë*/
+	/*JvGameÖ¸ï¿½ï¿½*/
 	static JvGame* jvGameP;
 
-	/*ÆÁÄ»¿í*/
+	/*ï¿½ï¿½Ä»ï¿½ï¿½*/
 	static unsigned int width;
 
-	/*ÆÁÄ»¸ß*/
+	/*ï¿½ï¿½Ä»ï¿½ï¿½*/
 	static unsigned int height;
 	
-	/*µ±Ç°³¡¾°Ö¸Õë*/
+	/*ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½*/
 	static JvState* stateP;
 
-	/*Ö¡ÂÊ*/
+	/*Ö¡ï¿½ï¿½*/
 	static unsigned int frameRate;
 	
-	/*Ã¿Ö¡¾­¹ýµÄÊ±¼ä(Ãë)*/
+	/*Ã¿Ö¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½(ï¿½ï¿½)*/
 	static double elapsed;
 
-	/*×î´óµÄelapsed*/
+	/*ï¿½ï¿½ï¿½ï¿½elapsed*/
 	static double maxElapsed;
 
-	/*Ê±¼äËõ·Å*/
+	/*Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	static double timeScale;
 
-	/*µ±Ç°ÉãÏñ»úµÄÖ¸Õë*/
+	/*ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½*/
 	static JvCamera* camera;
 
-	/*ÊäÈëÉè±¸*/
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½è±¸*/
 	static JvJoystick* joystick;
 
 	static JvSave* save;
@@ -71,6 +72,8 @@ public:
 	static JvSound* sound;
 
 	static bool pause;
+
+	static mINI::INIStructure ini;
 };
 
 #endif
