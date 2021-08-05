@@ -279,16 +279,15 @@ void JvJoystick::updateSDLInput(SDL_Event& e)
 	    const int JOYSTICK_DEAD_ZONE = 8000;
 	    int xDir=0;
 	    int yDir=0;
-	    if(e.jaxis.which==0){
+//        printf("axid:%d\n",e.jaxis.value);
+        if(e.jaxis.which==0){
 	        //X axis motion
 	        if( e.jaxis.axis == 0 )
 	        {
-	            //Left of dead zone
 	            if( e.jaxis.value < -JOYSTICK_DEAD_ZONE )
 	            {
 	                xDir = -1;
 	            }
-	            //Right of dead zone
 	            else if( e.jaxis.value > JOYSTICK_DEAD_ZONE )
 	            {
 	                xDir =  1;
@@ -321,7 +320,7 @@ void JvJoystick::updateSDLInput(SDL_Event& e)
             pressDownOrUp(LEFTCODE,false);
             pressDownOrUp(RIGHTCODE,false);
         }else{
-            pressDownOrUp((xDir>0)?RIGHTCODE:LEFTCODE,true);
+            pressDownOrUp((xDir<0)?RIGHTCODE:LEFTCODE,true);
         }
 	    if(yDir==0){
             pressDownOrUp(UPCODE,false);
