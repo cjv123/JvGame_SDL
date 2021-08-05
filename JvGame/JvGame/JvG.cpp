@@ -4,6 +4,7 @@
 #include "JvSave.h"
 #include "JvGame.h"
 #include "JvSound.h"
+#include "ini.h"
 
 JvGame* JvG::jvGameP = NULL;
 unsigned int JvG::width;

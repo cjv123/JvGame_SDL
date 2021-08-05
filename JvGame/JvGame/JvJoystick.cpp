@@ -230,19 +230,19 @@ void JvJoystick::updateSDLInput(SDL_Event& e)
 	{
 //	    printf("button %d\n",e.jbutton.button);
 	    bool down = (e.type == SDL_JOYBUTTONDOWN);
-	    if(e.jbutton.button==atoi(JvG::ini["joystick"]["a"].c_str())){
+	    if(e.jbutton.button==atoi(JvG::ini["joystick"]["a"].c_str()) || e.jbutton.button==0){
             pressDownOrUp(ACODE,down);
-        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["b"].c_str())){
+	    }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["b"].c_str()) || e.jbutton.button==1){
             pressDownOrUp(BCODE,down);
-        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["x"].c_str())){
+	    }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["x"].c_str()) || e.jbutton.button==2){
             pressDownOrUp(XCODE,down);
-        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["y"].c_str())){
+	    }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["y"].c_str()) || e.jbutton.button==3){
             pressDownOrUp(YCODE,down);
-        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["start"].c_str())){
+	    }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["start"].c_str()) || e.jbutton.button==6){
             pressDownOrUp(STARTCODE,down);
-        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["select"].c_str())){
+	    }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["select"].c_str()) || e.jbutton.button==7){
             pressDownOrUp(SELECTCODE,down);
-        }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["exit"].c_str())){
+	    }else if(e.jbutton.button==atoi(JvG::ini["joystick"]["exit"].c_str()) || e.jbutton.button==9){
 	        exit(0);
         }
 	}
